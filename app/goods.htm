@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Newusers</title>
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+
+<form action="">
+<table>
+	<tr>
+		<td>id</td>
+		<td><input type="text" name="id" value=""></td>
+	</tr>
+    
+	<tr>
+		<td>attr</td>
+		<td><input type="text" name="attr" value="">根据属性数量改变价格不能为空</td>
+	</tr>
+        
+	<tr>
+		<td>number</td>
+		<td><input type="text" name="number" value="">根据属性数量改变价格不能为空</td>
+	</tr>    <tr>
+		<td>user_id</td>
+		<td><input type="text" name="user_id" value="">看可能喜欢的加上用户id</td>
+	</tr>
+    
+    
+    <tr>
+		<td>act</td>
+		<td><input type="text" name="act" value="">goods_info:商品详情,pic_list:商品相册,properties:商品规格,team_list:正在进行的团,comment_list:评价,love_goods_list:可能喜欢的,luck_info：夺宝详情,goods_price：根据商品数量或规格改变价格</td>
+	</tr>
+
+	<tr>
+		<td>verify</td>
+		<td><input type="text" name="verify" value="e10adc3949ba59abbe56e057f20f883e" readonly></td>
+	</tr>
+   
+
+	<tr>
+		<td colspan="2">
+        <input type="button" value="OK" id="ok"></td>
+	</tr>
+</table>
+</form>
+
+
+<div id="back"></div>
+<script>
+	$(function() {
+		$("#ok").click(function(event) {
+			$.ajax({
+				url: 'app.php?op=goods',
+				type: 'POST',
+				dataType: 'json',
+				data: $("form").serialize(),
+				success: function(json){
+					$("#back").html(JSON.stringify(json));
+				}
+			})
+		})
+	});
+	
+</script>
+</body>
+</html>

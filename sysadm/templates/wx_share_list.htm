@@ -1,0 +1,80 @@
+<!-- $Id: goods_list.htm 17126 2010-04-23 10:30:26Z liuhui $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<!-- 商品列表 -->
+<form method="post" action="" name="listForm" onsubmit="return confirmSubmit(this)">
+  <!-- start goods list -->
+  <div class="list-div" id="listDiv">
+{/if}
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>
+      <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox" />
+      <a href="javascript:listTable.sort('id'); ">{$lang.record_id}</a>{$sort_id}
+    </th>
+    <th>用户头像</th>
+    <th>用户名</th>
+    <th>用户ID</th>
+    <th>分享类型</th>
+    <th>分享状态</th>
+   <th>分享时间</th>
+   <th>分享链接</th>
+   
+  <tr>
+  {foreach from=$share_list item=item}
+  <tr>
+    <td><input type="checkbox" name="checkboxes[]" value="{$item.id}" />{$item.id}</td>
+    
+    <td align="right"><img src="{$item.headimgurl}" width="20" height="20"/></td>
+    <td align="right">{$item.uname}</td>
+    <td align="right">{$item.openid}</td>
+    <td align="right">{$lang.share_type[$item.share_type]}</td>
+    <td align="right">{$lang.share_status[$item.share_status]}</td>
+    <td align="right">{$item.add_time}</td>
+    <td align="right">{$item.link_url}</td>
+
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+
+<!-- 分页 -->
+<table id="page-table" cellspacing="0">
+  <tr>
+    <td align="right" nowrap="true">
+    {include file="page.htm"}
+    </td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+
+<div>
+  <input type="hidden" name="act" value="batch" />
+  <input type="submit" value="移除" id="btnSubmit" name="btnSubmit" class="button" disabled="true" />
+</div>
+</form>
+
+<script type="text/javascript">
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+
+  {literal}
+  onload = function()
+  {
+    startCheckOrder(); // 开始检查订单
+    document.forms['listForm'].reset();
+  }
+
+{/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

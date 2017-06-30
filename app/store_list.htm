@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>store_list</title>
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+店铺街列表
+<form action="">
+<table>
+	<tr>
+		<td>id</td>
+		<td><input type="text" name="id" value="">分类id</td>
+	</tr>
+
+	<tr>
+		<td>verify</td>
+		<td><input type="text" name="verify" value="e10adc3949ba59abbe56e057f20f883e" readonly></td>
+	</tr>
+    <tr>
+		<td>act</td>
+		<td><input name="act" type="text" value="">store_list:店铺列表,category_list:店铺分类</td>
+	</tr>
+            
+
+	<tr>
+		<td colspan="2">
+        <input type="button" value="OK" id="ok"></td>
+	</tr>
+</table>
+</form>
+
+店铺街分类
+<!--<form action="">
+<table>
+	
+
+	<tr>
+		<td>verify</td>
+		<td><input type="text" name="verify" value="e10adc3949ba59abbe56e057f20f883e" readonly></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+        <input name="act" type="hidden" value="category_list">
+        <input type="button" value="OK1" id="ok1"></td>
+	</tr>
+</table>
+</form>-->
+
+<div id="back"></div>
+<script>
+	$(function() {
+		$("#ok").click(function(event) {
+			$.ajax({
+				url: 'app.php?op=store_list',
+				type: 'POST',
+				dataType: 'json',
+				data: $("form").serialize(),
+				success: function(json){
+					$("#back").html(JSON.stringify(json));
+				}
+			})
+		})
+	});
+	$(function() {
+		$("#ok1").click(function(event) {
+			$.ajax({
+				url: 'app.php?op=store_list',
+				type: 'POST',
+				dataType: 'json',
+				data: $("form").serialize(),
+				success: function(json){
+					$("#back").html(JSON.stringify(json));
+				}
+			})
+		})
+	});
+</script>
+</body>
+</html>

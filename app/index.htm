@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>INDEX</title>
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+<form action="">
+	<table>
+		<tr>
+			<td width="84">act</td>
+			<td width="522"><input type="text" name="act" value=""> team_list,zero,mall</td>
+		</tr>
+		
+		<tr>
+			<td>site_id</td>
+			<td><input type="text" name="site_id" value="">城市id  site_id</td>
+		</tr>
+<tr>
+			<td>Num</td>
+			<td><input type="text" name="page_size" value="">显示数量 page_size</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+            
+            <input type="button" value="OK" id="ok">
+             <input type="hidden"name="verify" value="e10adc3949ba59abbe56e057f20f883e">
+            </td>
+		</tr>
+	</table>
+</form>
+<div id="back"></div>
+<script>
+	$(function() {
+		$("#ok").click(function(event) {
+			$.ajax({
+				url: 'app.php?op=index',
+				type: 'POST',
+				dataType: 'json',
+				data: $('form').serialize(),
+				success: function(json){
+					$("#back").html(JSON.stringify(json));
+				}
+			})
+		})
+	});
+</script>
+</body>
+</html>

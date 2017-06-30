@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>flows</title>
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+<form action="">
+<table>
+ <tr>
+		<td>act</td>
+		<td><input type="text" name="act" value="add_to_cart"></td>
+	</tr>
+     <tr>
+		<td>user_id</td>
+		<td><input type="text" name="user_id" value=""></td>
+	</tr>
+    <tr>
+		<td>spec</td>
+		<td><input type="text" name="spec" value=""></td>
+	</tr>
+     <tr>
+		<td>number</td>
+		<td><input type="text" name="number" value=""></td>
+	</tr>
+     <tr>
+		<td>rec_type</td>
+		<td><input type="text" name="rec_type" value=""></td>
+	</tr>
+       <tr>
+		<td>type</td>
+		<td><input type="text" name="type" value=""></td>
+	</tr>
+        <tr>
+		<td>team_sign</td>
+		<td><input type="text" name="team_sign" value=""></td>
+	</tr>
+       <tr>
+		<td>goods_id</td>
+		<td><input type="text" name="goods_id" value=""></td>
+	</tr>
+    
+     <!-- <tr>
+		<td>goods</td>
+		<td><input type="text" name="goods" value=""></td>
+	</tr>-->
+	<tr>
+		<td>verify</td>
+		<td><input type="text" name="verify" value="e10adc3949ba59abbe56e057f20f883e" readonly></td>
+	</tr>
+	<tr>
+		<td colspan="2"><input type="button" value="OK" id="ok"></td>
+	</tr>
+</table>
+
+{"quick":1,"spec":["517","534","538"],"goods_id":261,"number":"1","parent":0,"rec_type
+":0,"team_sign":0,"type":0}<br>
+quick 默认1<br>
+spec:规格<br>
+number:数量<br>
+rec_type:5  表示拼团
+type:0 加入购物车<br>
+type:1 直接购买<br>
+如果是0直接改变购物车，如果是1 到购物车页面
+
+
+
+<br>
+app.php?op=flows&act=add_to_cart
+</form>
+<div id="back"></div>
+<script>
+	$(function() {
+		$("#ok").click(function(event) {
+			$.ajax({
+				url: 'app.php?op=flows',
+				type: 'POST',
+				dataType: 'json',
+				data: $("form").serialize(),
+				success: function(json){
+					$("#back").html(JSON.stringify(json));
+				}
+			})
+		})
+	});
+</script>
+</body>
+</html>

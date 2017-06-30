@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="format-detection" content="telephone=no">
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link href="{$hhs_css_path}/style.css" rel="stylesheet" />
+{insert_scripts files='jquery.js,haohaios.js,iscroll.js,jquery.lazyload.js'}
+</head>
+<body>
+<div class="container">
+    <div class="top_search">
+        <form id="searchForm" name="searchForm" method="get" action="search.php" onSubmit="return checkSearchForm()">
+            <input name="keywords" id="keyword" type="text" class="text" value="{$search_keywords|escape}" placeholder="商品搜索">
+            <input type="submit" value="搜索" class="submit" />
+        </form>
+    </div>
+    <div class="top_nav">
+        <ul class="sort">
+            <li><a href="category.php?&id={$cat_id}sort=sort_order&uid={$uid}" {if $sort eq 'sort_order'}class="cur"{/if}>综合</a></li>
+            <li><a href="category.php?sort=click_count&id={$cat_id}&uid={$uid}" {if $sort eq 'click_count'}class="cur"{/if}>人气</a></li>
+            <li><a href="category.php?sort=sales_num&id={$cat_id}&uid={$uid}" {if $sort eq 'sales_num'}class="cur"{/if}>销量</a></li>
+            <li><a href="category.php?sort=shop_price&id={$cat_id}&uid={$uid}" {if $sort eq 'shop_price'}class="cur"{/if}>价格</a></li>
+        </ul>
+        <div id="menus" class="menu">
+            <ul>
+                <li><a href="category.php?sort=sort_order&uid={$uid}" {if $cat_id eq 0}class="cur"{/if}>全部</a></li>
+                {foreach from=$categories item=cat}
+                <li><a href="category.php?id={$cat.id}&sort={$sort}&uid={$uid}" {if $cat_id eq $cat.id}class="cur"{/if}>{$cat.name}</a></li>
+                {/foreach}
+            </ul>
+        </div>
+    </div>
+    <div class="blank"></div>
+    <div class="good_list">
+        <div class="blank"></div>
+        <ul class="list_B">
+            <!--{foreach from=$goods_list item=goods}-->
+            <li>
+                <a href="{if $goods.goods_number gt 0}{$goods.url}&uid={$uid}{else}javascript:void(0);{/if}"><img data-original="{$goods.goods_thumb}" src="images/loading.gif" class="lazy"></a>
+                <p class="tit"><a href="{$goods.url}&uid={$uid}">{$goods.goods_name}</a></p>
+                <p class="brief">{$goods.goods_brief}</p>
+                <p><del>¥{$goods.market_price}</del><font class="price">¥<b>{$goods.shop_price}</b></font></p>
+            </li>
+            <!--{/foreach}-->
+        </ul>
+    </div>
+    <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+</div>
+<div class="blank"></div>
+<!-- #BeginLibraryItem "/library/footer.lbi" --><!-- #EndLibraryItem -->
+<script>
+var Scroll = new iScroll('menus',{hScrollbar:false, vScrollbar:false});
+</script>
+<script>
+	window.onload=function(){
+		$("img.lazy").lazyload({
+                effect: "fadeIn",
+                threshold : 200
+        });
+        $("img.lazy:eq(0)").attr('src',$("img.lazy:eq(0)").attr('data-original'));
+	}
+</script>
+</body>
+</html>
+

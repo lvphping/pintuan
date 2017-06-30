@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Newusers</title>
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+
+<form action="">
+<table>
+	<tr>
+		<td>id</td>
+		<td><input type="text" name="id" value="">//店铺id</td>
+	</tr>
+    
+  
+	<tr>
+		<td>verify</td>
+		<td><input type="text" name="verify" value="e10adc3949ba59abbe56e057f20f883e" readonly></td>
+	</tr>
+   
+
+	<tr>
+		<td colspan="2">
+        <input type="button" value="OK" id="ok"></td>
+	</tr>
+</table>
+</form>
+
+
+<div id="back"></div>
+<script>
+	$(function() {
+		$("#ok").click(function(event) {
+			$.ajax({
+				url: 'app.php?op=store',
+				type: 'POST',
+				dataType: 'json',
+				data: $("form").serialize(),
+				success: function(json){
+					$("#back").html(JSON.stringify(json));
+				}
+			})
+		})
+	});
+	
+</script>
+</body>
+</html>

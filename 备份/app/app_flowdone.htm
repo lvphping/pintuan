@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>flows</title>
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+<form action="">
+<table>
+ <tr>
+		<td>act</td>
+		<td><input type="text" name="act" value="json_done"></td>
+	</tr>
+     <tr>
+		<td>user_id</td>
+		<td><input type="text" name="user_id" value=""></td>
+	</tr>
+    <tr>
+		<td>shipping_id</td>
+		<td><input type="text" name="shipping_id" value=""></td>
+	</tr>
+   <!--  <tr>
+		<td>address_id</td>
+		<td><input type="text" name="address_id" value=""></td>
+	</tr>-->
+     <tr>
+		<td>point_id</td>
+		<td><input type="text" name="point_id" value=""> 如果配送方式是自提的话需要选择自提点</td>
+	</tr>
+       <tr>
+		<td>checked_mobile</td>
+		<td><input type="text" name="checked_mobile" value="">选择自提输入手机号码</td>
+	</tr>
+      <tr>
+		<td>best_time</td>
+		<td>  <select name="best_time" class="inp">
+                <option value="9:00以前">9:00以前</option>
+                <option value="9:00-10:00">9:00-10:00</option>
+                <option value="10:00-11:00">10:00-11:00</option>
+                <option value="11:00-12:00">11:00-12:00</option>
+                <option value="12:00-13:00">12:00-13:00</option>
+                <option value="13:00-14:00">13:00-14:00</option>
+                <option value="14:00-15:00">14:00-15:00</option>
+                <option value="15:00-16:00">15:00-16:00</option>
+                <option value="17:00-18:00">17:00-18:00</option>
+                <option value="18:00-19:00">18:00-19:00</option>
+                <option value="19:00以后">19:00以后</option>
+            </select>
+            
+            选择自提选择自提时间
+            
+            </td>
+	</tr>
+    
+    
+    
+        <tr>
+		<td>payment</td>
+		<td><input type="text" name="payment" value="">支付方式id</td>
+	</tr>
+    
+         <tr>
+		<td>postscript</td>
+		<td><input type="text" name="postscript" value="">备注</td>
+	</tr>
+    
+       <tr>
+		<td>bonus</td>
+		<td><input type="text" name="bonus" value="">红包id</td>
+	</tr>
+    
+     <!-- <tr>
+		<td>goods</td>
+		<td><input type="text" name="goods" value=""></td>
+	</tr>-->
+	<tr>
+		<td>verify</td>
+		<td><input type="text" name="verify" value="e10adc3949ba59abbe56e057f20f883e" readonly></td>
+	</tr>
+	<tr>
+		<td colspan="2"><input type="button" value="OK" id="ok"></td>
+	</tr>
+</table>
+
+</form>
+<div id="back"></div>
+<script>
+	$(function() {
+		$("#ok").click(function(event) {
+			$.ajax({
+				url: 'app.php?op=flow',
+				type: 'POST',
+				dataType: 'json',
+				data: $("form").serialize(),
+				success: function(json){
+					$("#back").html(JSON.stringify(json));
+				}
+			})
+		})
+	});
+</script>
+</body>
+</html>
