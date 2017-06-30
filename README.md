@@ -6,6 +6,6 @@
 4、后台地址 http://您域名/sysadm/
      帐号 admin  密码 haoid.cn8
 5、其它的自己进后台慢慢配置，自己摸索。
-源码下载地址：百度云盘下载链接：http://pan.baidu.com/s/1nuAG5mT 密码：i0vw
+源码下载地址：百度云盘下载链接  链接: http://pan.baidu.com/s/1miQcg1y 密码: ednq
 ## 商业友好的开源协议
 遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源组织Apache采用的协议。该协议和BSD类似，鼓励代码共享和尊重原作者的著作权，同样允许代码修改，再作为开源或商业软件发布。
